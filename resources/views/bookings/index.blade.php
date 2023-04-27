@@ -32,6 +32,7 @@
                                 <td class="border px-4 py-2 text-center">
                                     <a href="{{ route('booking.edit', $booking->id) }}"
                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Edit</a>
+                                    @if($booking->user_id === auth()->id())
                                     <form action="{{ route('booking.destroy', $booking->id) }}" method="POST"
                                           class="inline-block">
                                         @csrf
@@ -41,6 +42,7 @@
                                             Delete
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
