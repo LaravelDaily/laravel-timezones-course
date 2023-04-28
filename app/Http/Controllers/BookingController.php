@@ -31,13 +31,17 @@ class BookingController extends Controller
         return redirect()->route('booking.index');
     }
 
-    public function edit(Booking $booking)
+    public function edit(Request $request, Booking $booking)
     {
+        abort_unless($booking->user_id === $request->user()->id, 404);
+        
         return view('bookings.edit', compact('booking'));
     }
 
     public function update(UpdateBookingRequest $request, Booking $booking): RedirectResponse
     {
+        abort_unless($booking->user_id === $request->user()->id, 404);
+
         $booking->update($request->validated());
 
         return redirect()->route('booking.index');

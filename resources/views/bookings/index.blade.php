@@ -30,18 +30,18 @@
                                 <td class="border px-4 py-2">{{ $booking->start }}</td>
                                 <td class="border px-4 py-2">{{ $booking->end }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <a href="{{ route('booking.edit', $booking->id) }}"
-                                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Edit</a>
                                     @if($booking->user_id === auth()->id())
-                                    <form action="{{ route('booking.destroy', $booking->id) }}" method="POST"
-                                          class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                            Delete
-                                        </button>
-                                    </form>
+                                        <a href="{{ route('booking.edit', $booking->id) }}"
+                                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Edit</a>
+                                        <form action="{{ route('booking.destroy', $booking->id) }}" method="POST"
+                                              class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                                Delete
+                                            </button>
+                                        </form>
                                     @endif
                                 </td>
                             </tr>
