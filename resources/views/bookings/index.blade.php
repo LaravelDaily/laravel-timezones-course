@@ -27,8 +27,8 @@
                             <tr>
                                 <td class="border px-4 py-2">{{ $booking->id }}</td>
                                 <td class="border px-4 py-2">{{ $booking->user->name }}</td>
-                                <td class="border px-4 py-2">{{ $booking->start }}</td>
-                                <td class="border px-4 py-2">{{ $booking->end }}</td>
+                                <td class="border px-4 py-2">{{ toUserDateTime($booking->start, auth()->user()) }}</td>
+                                <td class="border px-4 py-2">{{ toUserDateTime($booking->end, auth()->user()) }}</td>
                                 <td class="border px-4 py-2 text-center">
                                     <a href="{{ route('booking.edit', $booking->id) }}"
                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">Edit</a>
