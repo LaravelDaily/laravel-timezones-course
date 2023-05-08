@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BookingCreatedEvent;
+use App\Events\BookingDeletedEvent;
+use App\Events\BookingUpdatedEvent;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
@@ -26,10 +29,12 @@ class BookingController extends Controller
 
     public function store(StoreBookingRequest $request): RedirectResponse
     {
-        $request->user()->bookings()->create([
+        $booking = $request->user()->bookings()->create([
             'start' => fromUserDateTime($request->validated('start')),
             'end' => fromUserDateTime($request->validated('end')),
         ]);
+
+        event(new BookingCreatedEvent($booking));
 
         return redirect()->route('booking.index');
     }
@@ -46,6 +51,8 @@ class BookingController extends Controller
             'end' => fromUserDateTime($request->validated('end')),
         ]);
 
+        event(new BookingUpdatedEvent($booking));
+
         return redirect()->route('booking.index');
     }
 
@@ -54,6 +61,8 @@ class BookingController extends Controller
         abort_unless($booking->user_id === $request->user()->id, 404);
 
         $booking->delete();
+
+        event(new BookingDeletedEvent($booking));
 
         return redirect()->route('booking.index');
     }
