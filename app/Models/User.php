@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Http;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,5 +33,14 @@ class User extends Authenticatable
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public static function guessUserTimezoneUsingAPI()
+    {
+        $ip = Http::get('https://ipecho.net/json');
+        if ($ip->json('timezone')) {
+            return $ip->json('timezone');
+        }
+        return null;
     }
 }
