@@ -14,7 +14,6 @@ class BookingDeletedListener
     {
         $event->booking->scheduledNotifications()
             ->where('user_id', $event->booking->user_id)
-            ->where('user_id', $event->booking->user_id)
             ->delete();
     }
 }
