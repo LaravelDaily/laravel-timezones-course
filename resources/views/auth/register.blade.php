@@ -44,7 +44,7 @@
             <x-input-label for="timezone" :value="__('Timezone')"/>
             <x-select-input id="timezone" class="block mt-1 w-full" name="timezone" :options="$timezones"
                             :selected="old('timezone')"
-                            :default="$guessedTimezone" required/>
+                            required/>
             <x-input-error :messages="$errors->get('timezone')" class="mt-2"/>
         </div>
 
