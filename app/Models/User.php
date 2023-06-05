@@ -35,9 +35,9 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-    public static function guessUserTimezoneUsingAPI()
+    public static function guessUserTimezoneUsingAPI($ip)
     {
-        $ip = Http::get('https://ipecho.net/json');
+        $ip = Http::get('https://ipecho.net/' . $ip . '/json');
         if ($ip->json('timezone')) {
             return $ip->json('timezone');
         }
