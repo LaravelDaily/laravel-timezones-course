@@ -49,7 +49,7 @@ if (!function_exists('toUserDateTime')) {
 }
 
 if (!function_exists('fromUserDate')) {
-    function fromUserDate(string|Carbon $date, ?User $user = null, string $timezone = 'UTC'): string
+    function fromUserDate(string|Carbon $date, ?User $user = null, string $timezone = null): string
     {
         if ($user) {
             $timezone = $user->timezone;
@@ -64,7 +64,7 @@ if (!function_exists('fromUserDate')) {
 }
 
 if (!function_exists('fromUserTime')) {
-    function fromUserTime(string|Carbon $date, ?User $user = null, string $timezone = 'UTC'): string
+    function fromUserTime(string|Carbon $date, ?User $user = null, string $timezone = null): string
     {
         if ($user) {
             $timezone = $user->timezone;
@@ -79,7 +79,7 @@ if (!function_exists('fromUserTime')) {
 }
 
 if (!function_exists('fromUserDateTime')) {
-    function fromUserDateTime(string|Carbon $date, ?User $user = null, string $timezone = 'UTC'): string
+    function fromUserDateTime(string|Carbon $date, ?User $user = null, string $timezone = null): string
     {
         if ($user) {
             $timezone = $user->timezone;
